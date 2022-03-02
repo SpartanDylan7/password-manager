@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane styleClass="primary" stylesheets="@css/Edit.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.eagle.passwordmanager.controller.LoginController">
+    <GridPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" maxWidth="149.0" minWidth="100.0" prefWidth="111.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="326.0" minWidth="10.0" prefWidth="221.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="128.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="48.0" />
+            <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="47.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="26.0" vgrow="ALWAYS" />
+        </rowConstraints>
+        <children>
+            <Label text="User Name" GridPane.rowIndex="1">
+                <GridPane.margin>
+                    <Insets left="10.0" />
+                </GridPane.margin>
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <Label text="Password" GridPane.rowIndex="2">
+                <GridPane.margin>
+                    <Insets left="10.0" />
+                </GridPane.margin>
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <TextField fx:id="userName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#onLogin" prefHeight="45.0" prefWidth="218.0" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="4" GridPane.vgrow="NEVER" />
+            <Hyperlink fx:id="newAccountLink" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#newAccount" style="-fx-text-fill: black" text="New Account" GridPane.columnIndex="2">
+                <GridPane.margin>
+                    <Insets left="20.0" />
+                </GridPane.margin>
+            </Hyperlink>
+            <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="436.0" text="Invalid User Name of Password" textFill="#e10707" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                <GridPane.margin>
+                    <Insets />
+                </GridPane.margin>
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+        </children>
+    </GridPane>
+
+</AnchorPane>

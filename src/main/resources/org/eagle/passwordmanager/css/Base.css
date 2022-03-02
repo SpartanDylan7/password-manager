@@ -1,0 +1,48 @@
+.primary {
+    -fx-background-color: #007ac1;
+    /*-fx-background-color: #9e9e9e;*/
+}
+
+.light {
+    /*-fx-background-color: #cfcfcf;*/
+    -fx-background-color: #03a9f4;
+}
+
+.dark {
+    -fx-background-color: #707070;
+}
+
+/*round corners of search box*/
+.search-text-field {
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.search-magnifying-glass {
+
+
+    -fx-background-insets: 0 6 0 -6;
+    -fx-min-width: 10;
+    -fx-max-width: 10;
+    -fx-min-height: 10;
+    -fx-max-height: 10;
+}
+
+.text-area {
+    text-area-background: #bbdefb ;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}
+
+.message {
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-background-color: #007ac1;
+    -fx-border-color: #707070;
+}
+
+/*.list-view {*/
+/*    -fx-background-color: #3c3c3c;*/
+/*}*/

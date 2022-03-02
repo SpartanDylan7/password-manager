@@ -1,0 +1,11 @@
+.primary{
+    -fx-background-color: #03a9f4;
+}
+
+.text-area {
+    text-area-background: #bbdefb ;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}

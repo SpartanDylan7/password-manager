@@ -1,0 +1,66 @@
+buildscript {
+    ext {
+
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id "org.beryx.jlink" version "2.24.4"
+}
+
+group 'org.eagle'
+version '1.0.0'
+//version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+//    flatDir {
+//        dirs('lib')
+//    }
+}
+java {
+    // generate sources.jar
+//    withSourcesJar()
+    //generate javaDoc.jar
+//    withJavadocJar()
+}
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'org.eagle.passwordmanager'
+    mainClass = 'org.eagle.passwordmanager.App'
+}
+
+javafx {
+    version = '17.0.1'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+
+    testImplementation('org.testng:testng:7.5')
+    testImplementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
+//    implementation 'mysql:mysql-connector-java:8.0.28'
+    implementation 'org.apache.derby:derby:10.15.2.0'
+//    implementation fileTree(dir: 'lib', include: ['*.jar'])
+//    implementation("com.gluonhq.scenebuilder:scenebuilder-kit:17.0.0")
+}
+
+test {
+    useTestNG()
+}
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'PasswordManagerApp'
+    }
+}
+
