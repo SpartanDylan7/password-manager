@@ -17,16 +17,9 @@ version '1.0.0'
 
 repositories {
     mavenCentral()
-//    flatDir {
-//        dirs('lib')
-//    }
+
 }
-java {
-    // generate sources.jar
-//    withSourcesJar()
-    //generate javaDoc.jar
-//    withJavadocJar()
-}
+
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
@@ -48,10 +41,8 @@ dependencies {
 
     testImplementation('org.testng:testng:7.5')
     testImplementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
-//    implementation 'mysql:mysql-connector-java:8.0.28'
     implementation 'org.apache.derby:derby:10.15.2.0'
-//    implementation fileTree(dir: 'lib', include: ['*.jar'])
-//    implementation("com.gluonhq.scenebuilder:scenebuilder-kit:17.0.0")
+
 }
 
 test {

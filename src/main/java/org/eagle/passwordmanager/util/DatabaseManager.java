@@ -11,6 +11,10 @@ public class DatabaseManager {
     private DatabaseManager() {
     }
 
+    /**
+     * This method create the database used by the application if there isnt one already made
+     * @throws SQLException
+     */
     public static void initializeDatabase() throws SQLException {
 
         try (Connection conn = DriverManager.getConnection(url)) {
@@ -28,6 +32,10 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * This sql query creates the users table in the database
+     * @param conn
+     */
     private static void createUsersTable(Connection conn) {
         String createUsersTableQuery = "CREATE TABLE USERS( "
                 + "ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
@@ -43,6 +51,10 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * This sql query creates items table in the database | It references the users table
+     * @param conn
+     */
     private static void createItemsTable(Connection conn) {
         String createItemsTableQuery = "CREATE TABLE ITEMS( "
                 + "ID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
@@ -62,6 +74,11 @@ public class DatabaseManager {
         }
     }
 
+    /**
+     * Retrieves a user from the database by username or return a new user
+     * @param userName
+     * @return
+     */
     public static User getUser(String userName) {
         User user = new User(userName);
         try (Connection conn = DriverManager.getConnection(url)) {
@@ -96,8 +113,13 @@ public class DatabaseManager {
         return user;
     }
 
+    /**
+     * Inserts a new user into the database
+     * @param user
+     * @return
+     */
     public static boolean insertNewUser(User user) {
-        String INSERT = "INSERT INTO USERS(USER_NAME,PASSWORD,EMAIL) VALUES (?,?,?)";
+        String INSERT = "INSERT INTO USERS(USER_NAME,PASSWORD,EMAIL) VALUES (?,?,?)"; //into the user table
         try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement ps = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, user.getUserName());
@@ -116,6 +138,12 @@ public class DatabaseManager {
         return true;
     }
 
+    /**
+     * Adds item to an existing user | if userid isn't in the database method will return false
+     * @param userId
+     * @param loginItem
+     * @return
+     */
     public static boolean insertItem(int userId, Login loginItem) {
         Login encryptedLogin = SecretsManager.encryptLogin(loginItem);
         String INSERT = "INSERT INTO ITEMS(USERS_ID,NAME,USER_NAME,PASSWORD,URL,NOTES) VALUES (?,?,?,?,?,?)";

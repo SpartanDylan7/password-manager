@@ -4,20 +4,20 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.eagle.passwordmanager.util.DatabaseManager;
 
-import java.io.IOException;
+
 import java.sql.SQLException;
 
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException, SQLException {
+    public void start(Stage stage) throws SQLException {
 
-            DatabaseManager.initializeDatabase();
+        DatabaseManager.initializeDatabase();
 
 
         ViewFactory.getInstance().showLoginWindow();
     }
-
+//Code Begins Here
     public static void main(String[] args) {
         launch();
     }
