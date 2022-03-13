@@ -16,11 +16,15 @@ public final class ViewFactory {
 
     private static ViewFactory INSTANCE;
 
-
+//Private Constructor
     private ViewFactory() {
 
     }
 
+    /**
+     * Makes a ViewFactory that is a singleton- Only 1 in the entire program
+     * @return
+     */
     public static ViewFactory getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new ViewFactory();
@@ -28,6 +32,11 @@ public final class ViewFactory {
         return INSTANCE;
     }
 
+    /**
+     * Loads FMXL file and creates a stage | Each FMXL page is paired with a controller
+     * @param controller
+     * @param title displayed on the stage
+     */
     private void initializeStage(BaseController controller, String title) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(controller.getFxmlName()));
         Parent parent;
@@ -45,6 +54,9 @@ public final class ViewFactory {
         stage.show();
     }
 
+    /**
+     * Displays the main window to the user
+     */
     public void showMainWindow() {
 //        System.out.println(" show main window called");
         BaseController controller = new MainController();
@@ -53,6 +65,9 @@ public final class ViewFactory {
 
     }
 
+    /**
+     * Displays the login window to the user
+     */
     public void showLoginWindow() {
 //        System.out.println(" show login window called");
         BaseController controller = new LoginController();
@@ -60,6 +75,9 @@ public final class ViewFactory {
         initializeStage(controller, "My Login");
     }
 
+    /**
+     * Displays the new user window to the user
+     */
     public void showNewUserWindow() {
 //        System.out.println(" show new user window called");
         BaseController controller = new NewUserController();
@@ -67,7 +85,10 @@ public final class ViewFactory {
         initializeStage(controller, "Add New User");
     }
 
-
+    /**
+     * Closes the current stage
+     * @param stageToClose
+     */
     public void closeStage(Stage stageToClose) {
         stageToClose.close();
     }
