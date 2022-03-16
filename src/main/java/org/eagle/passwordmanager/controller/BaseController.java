@@ -3,7 +3,7 @@ package org.eagle.passwordmanager.controller;
 import org.eagle.passwordmanager.model.User;
 
 public abstract class BaseController {
-    protected static User user;
+    protected static User user;//This user will be used by all controllers that extend BaseController
 
     private String fxmlName;
 

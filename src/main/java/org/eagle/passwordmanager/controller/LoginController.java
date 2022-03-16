@@ -30,14 +30,21 @@ public class LoginController extends BaseController {
     private final BooleanProperty lockedOut = new SimpleBooleanProperty(false);
     private int failedLoginAttempts = 0;
 
-
+    /**
+     * Initializer block is called when the controller is loaded
+     */
     @FXML
     private void initialize() {
         message.setText("");
+        //Disables the login button if login info is incomplete
         loginBtn.disableProperty().bind(Bindings.isEmpty(userName.textProperty()).or(passwordField.textProperty().isEmpty()).or(lockedOut));
         newAccountLink.disableProperty().bind(lockedOut);
     }
 
+    /**
+     * Method that opens a window to make a new user
+     * @param mouseEvent
+     */
     public void newAccount(MouseEvent mouseEvent) {
 //        System.out.println("new account request");
         message.setText("");
@@ -47,6 +54,10 @@ public class LoginController extends BaseController {
 
     }
 
+    /**
+     * This method is called when the user logs into their account. It then loads the stage with all of their passwords
+     * @param event
+     */
     @FXML
     private void onLogin(ActionEvent event) {
         User authUser = DatabaseManager.getUser(userName.getText());
@@ -67,7 +78,8 @@ public class LoginController extends BaseController {
             ViewFactory.getInstance().showMainWindow();
             ViewFactory.getInstance().closeStage(stage);
         } else {
-
+// If the password or username was incorrect the login button will disable
+// for 10 seconds then increase the time that it is disabled, the more times you get the password incorrect
             message.setText("Invalid user name or password");
             // button will be disabled for 10+ seconds if failed to login three in a row
             if (++failedLoginAttempts >= 3) {
