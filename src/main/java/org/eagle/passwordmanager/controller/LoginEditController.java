@@ -81,6 +81,10 @@ public class LoginEditController extends BaseController {
         return inputsFull;
     }
 
+    /**
+     * Creates a new login with your name username password website and notes
+     * @return
+     */
     public Login getNewLogin() {
         Login login = new Login(name.getText());
         login.setUserName(userName.getText());
@@ -90,6 +94,10 @@ public class LoginEditController extends BaseController {
         return login;
     }
 
+    /**
+     * Changes the name username password website and notes for a password
+     * @param selectedLogin
+     */
     public void editLogin(Login selectedLogin) {
         name.setText(selectedLogin.getName());
         userName.setText(selectedLogin.getUserName());
@@ -99,6 +107,10 @@ public class LoginEditController extends BaseController {
 
     }
 
+    /**
+     * Updates a user's information for a password
+     * @param selectedLogin
+     */
     public void updateLogin(Login selectedLogin) {
         selectedLogin.setName(name.getText().trim());
         selectedLogin.setUserName(userName.getText().trim());
@@ -108,6 +120,10 @@ public class LoginEditController extends BaseController {
         DatabaseManager.updateItem(selectedLogin);
     }
 
+    /**
+     * Generates a password up to 30 characters long
+     * @param event
+     */
     @FXML
     private void generatePassword(ActionEvent event) {
         pass.setText(PasswordGenerator.getInstance().generate((int) passLenSlider.getValue(), specialChars.isSelected(), useDigits.isSelected()));
