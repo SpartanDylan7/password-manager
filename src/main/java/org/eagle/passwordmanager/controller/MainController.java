@@ -54,8 +54,7 @@ public final class MainController extends BaseController {
     private ListView<Login> itemListView;
     @FXML
     private TextField searchField;
-    @FXML
-    private StackPane searchIcon;
+
     @FXML
     private Label leftMsg;
     @FXML
@@ -78,9 +77,8 @@ public final class MainController extends BaseController {
 
         logins = FXCollections.observableArrayList(Login.extractor);
         logins.addAll(user.getUserItems());
-
+//Creates a sorted list of login items that are sorted alphabetically
         sortedLogins = new SortedList<>(logins, (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
-//        logins.addAll(mockSomeInitialData());
 
         initSearchField();
         initPasswordTextField();
@@ -95,18 +93,16 @@ public final class MainController extends BaseController {
         itemListView.getSelectionModel().selectFirst();
 
         // adding context menu to our ListView
-        MenuItem addToFavorites = new MenuItem("Add to Favorites");
-        addToFavorites.setOnAction((event) -> {
-            // TODO add to favorites
-        });
+        //Opens the URL that you gave for a password
         MenuItem openInBrowser = new MenuItem("Open in Browser");
         openInBrowser.setOnAction((event) -> {
             openURL();
         });
+        //Edits an item
         MenuItem editLogin = new MenuItem("Edit");
         editLogin.setOnAction((this::editItem));
         MenuItem deleteLogin = new MenuItem("Delete");
-
+        //Deletes an item
         deleteLogin.setOnAction((event) -> {
             if (confirmDeletion()) {
                 Login currentLogin = getLogin();
@@ -114,7 +110,7 @@ public final class MainController extends BaseController {
                 logins.remove(getLogin());
             }
         });
-        ContextMenu contextMenu = new ContextMenu(addToFavorites, openInBrowser, editLogin, deleteLogin);
+        ContextMenu contextMenu = new ContextMenu(openInBrowser, editLogin, deleteLogin);
 
         // remove context menu from ListView if list is empty
         itemListView.contextMenuProperty().bind(Bindings.when(Bindings.size(itemListView.itemsProperty().get()).lessThan(1))
@@ -129,6 +125,7 @@ public final class MainController extends BaseController {
             leftMsg.setText("User name copied to clipboard");
 
         });
+        //copy URL to clipboard
         website.setOnMousePressed((event) -> {
             website.selectAll();
             content.putString(website.getText());
@@ -165,6 +162,9 @@ public final class MainController extends BaseController {
 
     }
 
+    /**
+     * Opens the URL for an item
+     */
     private void openURL() {
         Login login = getLogin();
         if (login != null) {
@@ -181,15 +181,26 @@ public final class MainController extends BaseController {
         }
     }
 
+    /**
+     * Gets the selected login from ListView
+     *
+     * @return
+     */
     public Login getLogin() {
         return itemListView.getSelectionModel().getSelectedItem();
     }
 
+    /**
+     * Clears the users clipboard
+     */
     private void clearClipboard() {
         leftMsg.setText("");
         clipboard.clear();
     }
 
+    /**
+     * Displays the options "Reveal" and "Copy" when you right-click on a password field
+     */
     private void initPasswordTextField() {
         //password context menu
         ContextMenu passwordContextMenu = new ContextMenu(new MenuItem("Copy"),
@@ -214,6 +225,11 @@ public final class MainController extends BaseController {
         });
     }
 
+    /**
+     * Displays the information for an item
+     *
+     * @param login
+     */
     private void showLoginDetails(Login login) {
         if (login != null) {
             name.setText(login.getName());
@@ -240,7 +256,7 @@ public final class MainController extends BaseController {
                 searchField.clear();
             }
 
-        });
+        });//Selects all the text in a search field
         searchField.setOnMousePressed((event) -> {
             searchField.selectAll();
         });
@@ -250,9 +266,7 @@ public final class MainController extends BaseController {
             }
 
         });
-        searchIcon.setOnMouseClicked((event) -> {
-            searchField.clear();
-        });
+
         // Login items filtered list
         FilteredList<Login> filteredList = new FilteredList<>(sortedLogins, data -> true);
         itemListView.setItems(filteredList);
@@ -268,6 +282,12 @@ public final class MainController extends BaseController {
 
     }
 
+    /**
+     * When you right click on a password you can edit the information if you don't select a password then
+     * it gives you a message to "Please select the login you want to edit."
+     *
+     * @param actionEvent
+     */
     @FXML
     private void editItem(ActionEvent actionEvent) {
         Login selectedLogin = getLogin();
@@ -310,6 +330,11 @@ public final class MainController extends BaseController {
         }
     }
 
+    /**
+     * Adds a new password to your list of passwords
+     *
+     * @param actionEvent
+     */
     @FXML
     private void addItem(ActionEvent actionEvent) {
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -339,13 +364,19 @@ public final class MainController extends BaseController {
             Login newLogin = contactController.getNewLogin();
 
             logins.add(newLogin);
-            DatabaseManager.insertItem(user.getUserId(),newLogin);
+            DatabaseManager.insertItem(user.getUserId(), newLogin);
 
         }
 
 
     }
 
+    /**
+     * A helper method that returns a FXMLLoader
+     *
+     * @param fxmlResource
+     * @return
+     */
     private FXMLLoader getFxmlResource(String fxmlResource) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource(fxmlResource));
