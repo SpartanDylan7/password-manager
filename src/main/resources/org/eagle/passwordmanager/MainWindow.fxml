@@ -65,11 +65,7 @@
                               <HBox fx:id="searchTopElement" alignment="CENTER" prefWidth="-1.0" spacing="0.0" HBox.hgrow="ALWAYS">
                                 <children>
                                   <TextField fx:id="searchField" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="80.0" prefWidth="-1.0" promptText="" styleClass="search-text-field" stylesheets="@css/Base.css" HBox.hgrow="ALWAYS" />
-                                  <StackPane fx:id="searchIcon" HBox.hgrow="NEVER">
-                                    <HBox.margin>
-                                      <Insets />
-                                    </HBox.margin>
-                                  </StackPane>
+
                                 </children>
                                  <HBox.margin>
                                     <Insets left="5.0" />

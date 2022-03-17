@@ -256,7 +256,8 @@ public final class MainController extends BaseController {
                 searchField.clear();
             }
 
-        });//Selects all the text in a search field
+        });
+        //Selects all the text in a search field
         searchField.setOnMousePressed((event) -> {
             searchField.selectAll();
         });
@@ -283,7 +284,7 @@ public final class MainController extends BaseController {
     }
 
     /**
-     * When you right click on a password you can edit the information if you don't select a password then
+     * When you click on Edit you can edit the information if you don't select a password then
      * it gives you a message to "Please select the login you want to edit."
      *
      * @param actionEvent
