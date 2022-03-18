@@ -18,7 +18,7 @@ public final class User {
     private String authToken;
     private String passwordHash;
     private final ObservableList<Login> userItems = FXCollections.observableArrayList();
-
+//Constructor
     public User(String userName) {
         this(userName, "");
     }
@@ -30,7 +30,7 @@ public final class User {
         this.userName = userName.trim();
         setPassword(password);
     }
-
+//Getters and setters
     public int getUserId() {
         return userId;
     }

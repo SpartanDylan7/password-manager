@@ -3,7 +3,7 @@ package org.eagle.passwordmanager.util;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-
+//Allowed characters and digits in the automatically generated password
 public final class PasswordGenerator {
     private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
     private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -22,7 +22,13 @@ public final class PasswordGenerator {
     }
 
 
-
+    /**
+     * Generates a random password that can be up to 30 characters long and at least 4.
+     * @param length
+     * @param usePunctuation
+     * @param useDigits
+     * @return
+     */
     public String generate(int length, boolean usePunctuation, boolean useDigits) {
         if (length < 4) {
             length = 4;

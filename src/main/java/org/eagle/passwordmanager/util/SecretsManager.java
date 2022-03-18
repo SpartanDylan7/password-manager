@@ -10,6 +10,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
 
+/**
+ * SecretsManager class is used to encrypt and decrypt items
+ */
 public final class SecretsManager {
     private static final String keyStr = "8e8df8cfcf65592745976d6629b469b5b4a3441ad3d96371f14ede7c12261101caa3251ed5eafe6afda56e684daa4090";
     private static SecretKeySpec secretKey;
@@ -84,6 +87,11 @@ public final class SecretsManager {
         return null;
     }
 
+    /**
+     * Creates an encrypted Login
+     * @param login
+     * @return
+     */
     public static Login encryptLogin(Login login) {
         String passwordHash = UsersManager.getInstance().getUserPasswordHash();
         int id = login.getLoginId();
@@ -96,6 +104,10 @@ public final class SecretsManager {
         return new Login(id, name, userName, password, url, notes);
     }
 
+    /**
+     * Decrypts a Login
+     * @param login
+     */
     public static void decryptLogin(Login login) {
         String passwordHash = UsersManager.getInstance().getUserPasswordHash();
         String name = decrypt(login.getName(), passwordHash);
